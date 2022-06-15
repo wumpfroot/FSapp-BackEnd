@@ -12,6 +12,7 @@ exports.createUser = async (req, res) => {
         const newUser = await User.create(userObj);
         // const token = await jwt.sign({ id: newUser._id }, process.env.SECRET);
         res.send({ newUser });
+        console.log(`User ${newUser.username} was added to the database`)
     } catch (error) {
         console.log(error);
         res.send({ error: error.code });
@@ -25,10 +26,14 @@ exports.deleteUser = async (req, res) => {
             username: req.params.username,
         }
         console.log("removeUser started")
-        const removeUser = await User.deleteOne(userObj); //NOT COMPLETE
+        const removeUser = await User.deleteOne(userObj);
         console.log(removeUser);
         res.send({ removeUser });
-        console.log("removeUser hit", removeUser)
+        if (removeUser.deletedCount > 0) {
+        console.log("Succesfully removed user", req.params.username)
+        } else {
+            console.log("Something went wrong")
+        }
     } catch (error) {
         console.log(error);
         res.send({ error: error.code });
@@ -41,8 +46,9 @@ exports.findUser = async (req, res) => {
             username: req.body.username
         };
         console.log("Find one user", userObj);
-        const result = await User.findOne(userObj);
+        const response = await User.findOne(userObj);
         res.status(200).json({ data:response });
+        console.log("Result:", response)
     } catch (error) {
         console.log(error);
         res.send({ error: error.code });
