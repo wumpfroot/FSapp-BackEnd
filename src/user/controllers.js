@@ -2,6 +2,7 @@ const User = require("./model");
 // const jwt = require("jsonwebtoken")
 
 exports.createUser = async (req, res) => {
+    console.log(req.body)
     try {
         const userObj = {
             username: req.body.username,
@@ -10,8 +11,7 @@ exports.createUser = async (req, res) => {
         }
         const newUser = await User.create(userObj);
         // const token = await jwt.sign({ id: newUser._id }, process.env.SECRET);
-        console.log(token);
-        res.send({ newUser, token });
+        res.send({ newUser });
     } catch (error) {
         console.log(error);
         res.send({ error: error.code });
@@ -19,9 +19,10 @@ exports.createUser = async (req, res) => {
 };
 
 exports.deleteUser = async (req, res) => {
+    console.log(req.params.username);
     try {
         const userObj = {
-            username: req.body.username,
+            username: req.params.username,
         }
         console.log("removeUser started")
         const removeUser = await User.deleteOne(userObj); //NOT COMPLETE
