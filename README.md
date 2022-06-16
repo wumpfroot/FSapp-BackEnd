@@ -19,7 +19,7 @@
 
 - How remove a single user from the database (username)
 - URL: http://localhost:5000/<username>  Example:  http://localhost:5000/wumpfroot  (Case sensitive)
-  (input this to the adress bar in Thuder Client/Insomnia)
+  (input this to the address bar in Thuder Client/Insomnia)
 
 # GET: Search User:
 
