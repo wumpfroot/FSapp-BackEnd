@@ -30,6 +30,15 @@
         "username": "USERNAME"
      }
 
+# PATCH: Update Username:
+
+- How update username of a specific user (username)
+- URL: http://localhost:5000/<old username> Example: http://localhost:5000/badusername (case sensitive)
+- Json Content:
+     - {
+       "username": "NEW USERNAME"
+     }
+
 
 
 

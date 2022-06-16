@@ -55,6 +55,26 @@ exports.findUser = async (req, res) => {
     }
 }
 
+//Updates the username with a specific ID
+exports.updateUser = async (req, res) => {
+    console.log("\nUsername", req.params.username);
+    try {
+        const updateUser = await User.updateOne(
+            { username: req.params.username }, 
+            { $set: { username: req.body.username }}
+            );
+            res.json(updateUser);
+            if (updateUser.modifiedCount > 0) {
+                console.log("\nwas succesfully changed to", req.body.username)
+                } else {
+                    console.log("Something went wrong")
+                }
+    } catch (error) {
+        console.log(error);
+        res.send({ error: error.code });
+    }
+}
+
 exports.tokenLogin = async (req, res) => {
     const token = await jwt.sign({ id: req.user._id }, process.env.SECRET);
     res.send({ user: req.user, token });
