@@ -24,7 +24,7 @@
 # GET: Search User:
 
 - How search for a user in the database (username)
-- URL: http://localhost:5000/<username> (input this to the adress bar in Thunder Client/Insomnia)
+- URL: http://localhost:5000/<username> (input this to the address bar in Thunder Client/Insomnia)
 
 # PATCH: Update Username:
 
