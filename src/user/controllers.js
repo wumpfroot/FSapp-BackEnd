@@ -1,5 +1,5 @@
 const User = require("./model");
-// const jwt = require("jsonwebtoken")
+const jwt = require("jsonwebtoken")
 
 exports.createUser = async (req, res) => {
     console.log(req.body)
@@ -10,8 +10,9 @@ exports.createUser = async (req, res) => {
             password: req.body.password,
         }
         const newUser = await User.create(userObj);
-        // const token = await jwt.sign({ id: newUser._id }, process.env.SECRET);
-        res.send({ newUser });
+        const token = await jwt.sign({ id: newUser._id }, process.env.SECRET);
+        console.log(token)
+        res.send({ newUser, token });
         console.log(`User ${newUser.username} was added to the database`)
     } catch (error) {
         console.log(error);
@@ -43,7 +44,7 @@ exports.deleteUser = async (req, res) => {
 exports.findUser = async (req, res) => {
     try {
         const userObj = {
-            username: req.body.username
+            username: req.params.username
         };
         console.log("Find one user", userObj);
         const response = await User.findOne(userObj);

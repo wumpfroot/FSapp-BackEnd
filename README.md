@@ -24,11 +24,7 @@
 # GET: Search User:
 
 - How search for a user in the database (username)
-- URL: http://localhost:5000/user (input this to the adress bar in Thunder Client/Insomnia)
-- Json Content:
-     - {
-        "username": "USERNAME"
-     }
+- URL: http://localhost:5000/<username> (input this to the adress bar in Thunder Client/Insomnia)
 
 # PATCH: Update Username:
 
@@ -38,6 +34,22 @@
      - {
        "username": "NEW USERNAME"
      }
+
+# POST: Json Web token
+
+- Added a login system (displays the userinfo)
+- URL: http://localhost:5000/login
+- - Json Content:
+     - {
+       "username": "USERNAME",
+       "password": "PASSWORD"
+     }
+
+# GET: Check User by token
+
+- In API client (thunder client, insomnia) add a header called: Authorization in the headers tab.
+- Copy and paste the token to the value field of Authorization 
+- URL: http://localhost:5000/user
 
 
 
